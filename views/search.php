@@ -113,13 +113,13 @@
 			</p>
 			<p class="facet-filter facet recent"><span class="facet-heading">Recent Searches</span>
             <?php
-            //reads the number of last lines from file that you specify
+            // Reads the number of last lines from file that you specify
             $file = array_reverse(file("search-log.txt"));
-            //remove repeated terms
+            // Remove repeated terms
 			$file = array_unique($file);
 			$limit = 5;
                 for ($i = 0; $i < $limit; $i++ ) {
-                    //check for empty values and strip comma from end of term string
+                    // Check for empty values and strip comma from end of term string
 					$term = (empty($file[$i])) ? null : str_replace(',', '', "$file[$i]");
                     echo '<a class="facet-link facet" href="./index.php?view=search&q='.urlencode($term).'">'.urldecode($term).'</a>'."\n";
                 }
