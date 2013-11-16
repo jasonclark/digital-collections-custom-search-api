@@ -47,7 +47,7 @@
 	if (!is_null($q)) {
 		// Process query
 
-		//log search query to a text file
+		// Log search query to a text file
 		session_start();
 		$logged = isset($_SESSION['logged']) ? $_SESSION['logged'] : null;
 		if ($logged != 'yes') {
@@ -97,23 +97,12 @@
 			</p>
 			<p class="facet-filter facet popular"><span class="facet-heading">Popular Searches</span>
 			<?php
-			//set user API key for Google Custom Search API
-			//$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
-			
-			//set most popular search terms RDF URL
+			// Set most popular search terms RDF URL
 			$request = 'http://www.google.com/cse/api/010001021870615082419/cse/sgtwcccfbiq/queries?key='.$key.'&view=overall';
-			
-			//read feed into SimpleXML object
+			// Read feed into SimpleXML object
 			$getPopular = simplexml_load_file($request, 'SimpleXMLIterator');
-			//set limit of 5 terms to display
+			// Set limit of 5 terms to display
 			$entries = new LimitIterator($getPopular->item, 0, 5);
-			//parse and display results for most popular search terms in this CSE
-			//foreach ($getPopular->item as $entry) {
-			
-			//$getPopular = simplexml_load_file($request);
-			//$entries = $getPopular->xpath('/rdf:RDF/item[position() <= 5]');
-
-			
 			foreach ($entries as $entry) {
 				$popularTerm = htmlentities($entry->title);
 			?>
