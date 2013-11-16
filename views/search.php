@@ -29,10 +29,10 @@
 	$v = isset($_GET['v']) ? strip_tags((int)$_GET['v']) : 'v1';
 
 	// Set user API key for Google Custom Search API
-	$key = isset($_GET['key']) ? $_GET['key'] : 'ADD-YOUR-GOOGLE-CUSTOM-SEARCH-API-KEY';
+	$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
 
 	// Set user ID for Google custom search engine
-	$id = isset($_GET['id']) ? $_GET['id'] : 'ADD-YOUR-GOOGLE-CUSTOM-SEARCH-ENGINE-ID';
+	$id = isset($_GET['id']) ? $_GET['id'] : '010001021870615082419:sgtwcccfbiq';
 
 ?>
 	<form id="searchBox" method="get" action="./index.php?view=search"> 
@@ -48,7 +48,6 @@
 		// Process query
 
 		//log search query to a text file
-		/*turn on and set as apache owner and 664 to make search-log record queries
 		session_start();
 		$logged = isset($_SESSION['logged']) ? $_SESSION['logged'] : null;
 		if ($logged != 'yes') {
@@ -61,7 +60,6 @@
 			fclose($fp);
 			$_SESSION['logged'] = 'yes';
 		}
-		*/
 
 		// Set URL for the Google Custom Search API call
 		$url = "https://www.googleapis.com/customsearch/$v?key=$key&cx=$id&alt=$form".(is_null($sort) ? "" : "&sort=$sort")."&num=$limit&start=$start&prettyprint=false&q=$q".(is_null($facet) ? "" : "&hq=$facet");	
@@ -97,36 +95,46 @@
 			</p>
 			<p class="facet-filter facet"><span class="facet-heading">Sort</span><a class="facet-link facet" href="./index.php?q=<?php echo urlencode($_GET['q']); ?>">Relevance</a> <a class="facet-link facet" href="./index.php?sort=date&amp;q=<?php echo urlencode($_GET['q']); ?>">Date</a>
 			</p>
-			<p class="facet-filter facet recent"><span class="facet-heading">Recent Searches</span>
-            <?php
-            //reads the number of last lines from file that you specify
-            $file = array_reverse(file("search-log.txt"));
-            //remove repeated terms
-			$file = array_unique($file);
-			$limit = 15;
-                for ($i = 0; $i < $limit; $i++ ) {
-                    //check for empty values and strip comma from end of term string
-					$term = (empty($file[$i])) ? null : str_replace(',', '', "$file[$i]");
-                    echo '<a class="facet-link facet" href="./index.php?view=search&q='.urlencode($term).'">'.urldecode($term).'</a>'."\n";
-                }
-            ?>
-			</p>
 			<p class="facet-filter facet popular"><span class="facet-heading">Popular Searches</span>
 			<?php
-			// Set user API key for Google Custom Search API
-			$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
-			// Set most popular search terms RDF URL
+			//set user API key for Google Custom Search API
+			//$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
+			
+			//set most popular search terms RDF URL
 			$request = 'http://www.google.com/cse/api/010001021870615082419/cse/sgtwcccfbiq/queries?key='.$key.'&view=overall';
-			// Read feed into SimpleXML object
-			$getPopular = simplexml_load_file($request);
-			// Parse and display results for most popular search terms in this CSE
-			foreach ($getPopular->item as $entry) {
+			
+			//read feed into SimpleXML object
+			$getPopular = simplexml_load_file($request, 'SimpleXMLIterator');
+			//set limit of 5 terms to display
+			$entries = new LimitIterator($getPopular->item, 0, 5);
+			//parse and display results for most popular search terms in this CSE
+			//foreach ($getPopular->item as $entry) {
+			
+			//$getPopular = simplexml_load_file($request);
+			//$entries = $getPopular->xpath('/rdf:RDF/item[position() <= 5]');
+
+			
+			foreach ($entries as $entry) {
 				$popularTerm = htmlentities($entry->title);
 			?>
 			<a class="facet-link facet" href="./index.php?view=search&q=<?php echo urlencode($popularTerm); ?>"><?php echo urldecode($popularTerm); ?></a>
 			<?php
 			}
 			?>
+			</p>
+			<p class="facet-filter facet recent"><span class="facet-heading">Recent Searches</span>
+            <?php
+            //reads the number of last lines from file that you specify
+            $file = array_reverse(file("search-log.txt"));
+            //remove repeated terms
+			$file = array_unique($file);
+			$limit = 5;
+                for ($i = 0; $i < $limit; $i++ ) {
+                    //check for empty values and strip comma from end of term string
+					$term = (empty($file[$i])) ? null : str_replace(',', '', "$file[$i]");
+                    echo '<a class="facet-link facet" href="./index.php?view=search&q='.urlencode($term).'">'.urldecode($term).'</a>'."\n";
+                }
+            ?>
 			</p>
 		</div>
 		<ul class="result">
