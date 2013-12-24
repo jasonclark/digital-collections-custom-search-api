@@ -65,7 +65,7 @@
 		$url = "https://www.googleapis.com/customsearch/$v?key=$key&cx=$id&alt=$form".(is_null($sort) ? "" : "&sort=$sort")."&num=$limit&start=$start&prettyprint=false&q=$q".(is_null($facet) ? "" : "&hq=$facet");	
 
 		// View source to see raw API call - REMOVE from production code
-		echo '<!--' . $url . '-->';
+		//echo '<!--' . $url . '-->';
     
 		// Build request and send to Google Ajax Search API
     	$request = file_get_contents($url);
