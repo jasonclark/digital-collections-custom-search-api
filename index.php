@@ -12,10 +12,11 @@ $customScript[0] = null;
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Cache-Control" content="max-age=200" />
 <meta name="description" content="<?php echo $pageTitle.', '.$subTitle; ?>" />
-<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo $pageTitle.', '.$subTitle; ?></title>
 <link rel="apple-touch-icon" href="./meta/img/msu-mobile.png" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700'" rel="stylesheet" type="text/css">
