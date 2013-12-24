@@ -19,7 +19,6 @@ $customScript[0] = null;
 <title><?php echo $pageTitle.', '.$subTitle; ?></title>
 <link rel="apple-touch-icon" href="./meta/img/msu-mobile.png" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700'" rel="stylesheet" type="text/css">
-<!--<link href="./meta/styles/m.css" media="screen" rel="stylesheet" type="text/css" />-->
 <link href="./meta/styles/app.css" media="screen" rel="stylesheet" type="text/css" />
 <?php 
 if ($customCSS != 'none') {
@@ -36,8 +35,8 @@ if ($customScript) {
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-2733436-2']);
-  _gaq.push(['_setDomainName', 'lib.montana.edu']);
+  _gaq.push(['_setAccount', 'ADD-YOUR-GOOGLE-ANALYTICS-ID-HERE']);
+  _gaq.push(['_setDomainName', 'ADD-YOUR-BASE-DOMAIN-URL-HERE']);
   _gaq.push(['_trackPageview']);
   _gaq.push(['_gat._anonymizeIp']);
 
