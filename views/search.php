@@ -29,10 +29,10 @@
 	$v = isset($_GET['v']) ? strip_tags((int)$_GET['v']) : 'v1';
 
 	// Set user API key for Google Custom Search API
-	$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
+	$key = isset($_GET['key']) ? $_GET['key'] : 'ADD-YOUR-GOOGLE-CUSTOM-SEARCH-API-KEY-HERE';
 
 	// Set user ID for Google custom search engine
-	$id = isset($_GET['id']) ? $_GET['id'] : '010001021870615082419:sgtwcccfbiq';
+	$id = isset($_GET['id']) ? $_GET['id'] : 'ADD-YOUR-GOOGLE-CUSTOM-SEARCH-ID-HERE';
 
 ?>
 	<form id="searchBox" method="get" action="./index.php?view=search"> 
@@ -62,7 +62,7 @@
 		}
 
 		// Set URL for the Google Custom Search API call
-		$url = "https://www.googleapis.com/customsearch/$v?key=$key&cx=$id&alt=$form".(is_null($sort) ? "" : "&sort=$sort")."&num=$limit&start=$start&prettyprint=false&q=$q".(is_null($facet) ? "" : "&hq=$facet");	
+		$url = "https://www.googleapis.com/customsearch/$v?key=$key&cx=$id&alt=$form".(is_null($sort) ? "" : "&sort=$sort")."&num=$limit&start=$start&prettyprint=true&q=$q".(is_null($facet) ? "" : "&hq=$facet");	
 
 		// View source to see raw API call - REMOVE from production code
 		//echo '<!--' . $url . '-->';
@@ -134,8 +134,8 @@
 			<li>
 			<p class="result-object">
 			<a href="<?php echo $link; ?>"><img alt="<?php echo htmlentities($item['title']); ?>" 
-			src="<?php $thumbnail = isset($item['pagemap']['cse_thumbnail'][0]['src']) ? $item['pagemap']['cse_thumbnail'][0]['src'] : './meta/img/thumbnail-default.png'; 
-			echo rawurldecode($thumbnail); ?>" /></a>
+			src="<?php $thumbnail = isset($item['pagemap']['metatags'][0]['thumbnailurl']) ? $item['pagemap']['metatags'][0]['thumbnailurl'] : (isset($item['pagemap']['cse_thumbnail'][0]['src']) ? $item['pagemap']['cse_thumbnail'][0]['src'] : (isset($item['pagemap']['cse_image'][0]['src']) ? $item['pagemap']['cse_image'][0]['src'] : './meta/img/thumbnail-default.png'));
+			echo rawurldecode($thumbnail);?>" /></a>
 			</p>
 			<p class="result-description">
 			<a href="<?php echo $link; ?>"><?php echo $item['htmlTitle']; ?></a>
