@@ -41,8 +41,8 @@ a.feed {float:right;width:auto;margin:0 10px 0 0;padding:5px 0;}
 #main ul.promo li {display:inline-block;padding:0;margin:0 5px 0 0;}
 
 #main ul.result {display:inline-block;list-style:none;margin: 2%;padding:0;border-spacing:5px;}
-#main ul.result li {display: block;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;border:1px solid #ccc;padding:5px;margin:0 0 10px 0;}
-#main ul.result li img {display:table-cell;vertical-align:top;}
+#main ul.result li {display: block;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;border:1px solid #ccc;padding:5px;margin:0 0 10px 0;}
+#main ul.result li img {display:table-cell;vertical-align:top;max-width:290px;}
 #main ul.result li span.meta {display:table-cell;vertical-align:top;margin:0;padding:0 0 0 5px;}
 
 #main ul.item {width:100%;margin-bottom:10px;list-style:none;}
@@ -154,7 +154,7 @@ ul.pages li {position: relative;left: 39em;list-style: none;background-color: #c
 .facet-heading {font-weight:bold;margin:0 0 0 1em;}
 .facet-filter {margin:.45em;text-indent:0;}
 .facet-filter {padding:.5em;}
-.facet-link {margin: .5em;text-indent:0;border-bottom:1px dotted rgba(5, 75, 140, 0.2);}
+.facet-link {margin: .25em;padding:.5em;text-indent:0;}
 .facet {display: inline-block;}
 .result-facet {display:inline-block;width:84%;}
 .result-facet p {border: #ccc 1px solid;border-radius:3px;}
