@@ -29,10 +29,10 @@
 	$v = isset($_GET['v']) ? strip_tags((int)$_GET['v']) : 'v1';
 
 	// Set user API key for Google Custom Search API
-	$key = isset($_GET['key']) ? $_GET['key'] : 'ADD-YOUR-GOOGLE-CUSTOM-SEARCH-API-KEY-HERE';
+	$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
 
 	// Set user ID for Google custom search engine
-	$id = isset($_GET['id']) ? $_GET['id'] : 'ADD-YOUR-GOOGLE-CUSTOM-SEARCH-ID-HERE';
+	$id = isset($_GET['id']) ? $_GET['id'] : '010001021870615082419:sgtwcccfbiq';
 
 ?>
 	<form id="searchBox" method="get" action="./index.php?view=search"> 
@@ -69,6 +69,12 @@
     
 		// Build request and send to Google Ajax Search API
     	$request = file_get_contents($url);
+
+    	if ($request === FALSE) {
+			// API call failed, display message to user
+			echo '<p><strong>It looks like we can\'t communicate with the API at the moment.</strong></p>'."\n";
+			exit(); 		
+    	}
     
     	// Decode json object(s) out of response from Google Ajax Search API
 		$result = json_decode($request, true);
