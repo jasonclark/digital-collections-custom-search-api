@@ -29,10 +29,10 @@
 	$v = isset($_GET['v']) ? strip_tags((int)$_GET['v']) : 'v1';
 
 	// Set user API key for Google Custom Search API
-	$key = isset($_GET['key']) ? $_GET['key'] : 'AIzaSyBPBEbLXzgvDhB8Pl9WGHHXPvSxj5TyBmg';
+	$key = isset($_GET['key']) ? $_GET['key'] : 'YOUR-GOOGLE-CUSTOM-SEARCH-API-KEY-HERE';
 
 	// Set user ID for Google custom search engine
-	$id = isset($_GET['id']) ? $_GET['id'] : '010001021870615082419:sgtwcccfbiq';
+	$id = isset($_GET['id']) ? $_GET['id'] : 'YOUR-GOOGLE-CUSTOM-SEARCH-ENGINE-ID-HERE';
 
 ?>
 	<form id="searchBox" method="get" action="./index.php?view=search">
