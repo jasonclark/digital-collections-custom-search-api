@@ -89,7 +89,7 @@
 		else {
 			// Make sure some results were returned, show results as html with result numbering and pagination
 ?>
-	<h2 class="result">Search for <strong><?php echo urldecode($q); ?></strong> (Returning 100 items from around <?php echo $totalItems; ?> matches)</h2>
+	<h2 class="result">Search for <strong><?php echo urldecode($q); ?></strong> (About <?php echo $totalItems; ?> results)</h2>
 		<div class="result-facet">
 			<p class="facet-filter facet"><span class="facet-heading">Filter</span>
 			<a class="facet-link facet" href="./index.php?q=<?php echo urlencode($_GET['q']); ?>">All</a>
@@ -102,7 +102,7 @@
 			<p class="facet-filter facet"><span class="facet-heading">Sort</span><a class="facet-link facet" href="./index.php?q=<?php echo urlencode($_GET['q']); ?>">Relevance</a> <a class="facet-link facet" href="./index.php?sort=date&amp;q=<?php echo urlencode($_GET['q']); ?>">Date</a>
 			</p>
 			<p class="facet-filter facet popular"><span class="facet-heading">Popular Searches</span>
-<?php
+			<?php
 			// Set most popular search terms RDF URL
 			$request = 'http://www.google.com/cse/api/010001021870615082419/cse/sgtwcccfbiq/queries?key='.$key.'&view=overall';
 			// Read feed into SimpleXML object
@@ -119,8 +119,8 @@
 			</p>
 			<p class="facet-filter facet recent"><span class="facet-heading">Recent Searches</span>
 <?php
-      // Reads the number of last lines from file that you specify
-      $file = array_reverse(file("search-log.txt"));
+// Reads the number of last lines from file that you specify
+			$file = array_reverse(file("search-log.txt"));
       // Remove repeated terms
 			$file = array_unique($file);
 			$limit = 5;
@@ -128,7 +128,7 @@
 				// Check for empty values and strip comma from end of term string
 				$term = (empty($file[$i])) ? null : str_replace(',', '', "$file[$i]");
 				echo '<a class="facet-link facet" href="./index.php?view=search&q='.urlencode($term).'">'.urldecode($term).'</a>'."\n";
-      }
+        }
 ?>
 			</p>
 		</div>
