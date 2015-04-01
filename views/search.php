@@ -4,9 +4,6 @@
 	// Number of records to display per page (1 - 10)
 	$recordsPerPage = 10;
 
-	// String that initially appears in the search box
-	$suggestedSearch = "keyword, name, title...";
-
 	// Set default value for query
 	$q = isset($_GET['q']) ? urlencode(strip_tags(trim($_GET['q']))) : null;
 
@@ -38,7 +35,7 @@
 	<form id="searchBox" method="get" action="./index.php?view=search">
 		<fieldset>
 			<label for="q">Search</label>
-			<input type="text" maxlength="200" name="q" id="q" tabindex="1" value="<?php echo (!is_null($q) ? $q : $suggestedSearch); ?>" onclick="if (this.value == '<?php echo $suggestedSearch; ?>') { this.value = ''; }" onblur="if (this.value == '') { this.value = '<?php echo $suggestedSearch; ?>'; }" />
+			<input type="text" maxlength="200" name="q" id="q" tabindex="1" placeholder="keyword, name, title..." value="" autofocus />
 			<button type="submit" class="button">Search</button>
 		</fieldset>
 	</form>
