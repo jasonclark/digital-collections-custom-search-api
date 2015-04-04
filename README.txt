@@ -2,8 +2,8 @@ App code built with PHP, HTML, CSS to demonstrate how Google's index can be repu
 
 Live demo: http://arc.lib.montana.edu/digital-collections
 
-Scott Young (@hello_scott_) and Jason Clark (@jaclark)
-Montana State University Library
+Jason Clark (@jaclark) and Scott Young (@hei_scott)
+Montana State University(MSU) Library
 
 Code prototype from the Digital Library Forum Session:
 "Metadata First: Using Structured Data Markup and the Google Custom Search API to Outsource Your Digital Collection Search Index"
